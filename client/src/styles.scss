@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.background {
+    text-decoration-color: white;
+    background-color: grey;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    .block {
+        display: inline-block;
+    }
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

@@ -1,0 +1,86 @@
+<div class="container">
+    <!-- <form [formGroup]="studentForm" (submit)="submit()">
+        <table class="table table-border">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>NAME</th>
+                    <th>DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let student of studentRecord.controls;let i=index" [formGroupName]="i">
+                    <th scope="row">{{i+1}}</th>
+                    <td><input class="form-control" [formControl]="student.get('Name')" autocomplete="off" type="text" /></td>
+
+
+                    <td><input class="form-control" [formControl]="student.get('Date')" autocomplete="off" type="text" /></td>
+
+                    <td>
+                        <a (click)="addItem()" class="">
+                            Edit</a>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-secondary btn-100" type="submit" (click)="addItem()" [disabled]="disabledAdd">
+                                Add
+                                </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-border">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>InTime</th>
+                    <th>outtime</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let student of studentTimeRecord.controls;let i=index" [formGroupName]="i">
+                    <th scope="row">{{i||'0'}}</th>
+                    <td><input class="form-control" [formControl]="student.get('inTime')" autocomplete="off" type="text" /></td>
+
+
+                    <td><input class="form-control" [formControl]="student.get('outTime')" autocomplete="off" type="text" /></td>
+
+                    <td>
+                        <a (click)="addItem()" class="">
+                                    Edit</a>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-secondary btn-100" type="submit" (click)="addTime()" [disabled]="disabledAdd">
+                                        Add
+                                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="container-btn form-group">
+            <button class="btn btn-secondary btn-100" type="submit">
+    Submit
+  </button>
+        </div>
+    </form> -->
+    <div class="table1">
+        <h5 style="text-align:center">Add Student</h5>
+        <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="addRecord($event)" (deleteConfirm)="deleteRecord($event)" (editConfirm)="editRecords($event)"></ng2-smart-table>
+        <h5 style="text-align:center">Add Time</h5>
+        <ng2-smart-table [settings]="settingsTime" [source]="sourceTime" (createConfirm)="addRecordTime($event)" (editConfirm)="editRecordsTime($event)"></ng2-smart-table>
+        <div class="container-btn form-group">
+            <button class="btn btn-secondary btn-100" type="submit" (click)="saveAllRecords()">
+        Submit
+      </button>
+        </div>
+
+    </div>
