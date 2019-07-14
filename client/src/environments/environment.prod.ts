@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
  // baseUrl: 'https://buy.amhi.in/api/',
+  baseUrl: 'http://localhost:9000/api/',
   headerName: 'authorization',
   authScheme: 'Bearer ',
   whitelistedDomains: [],

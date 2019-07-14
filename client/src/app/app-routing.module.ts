@@ -4,7 +4,7 @@ import { StudentEntryComponent } from './studentEntry/studentEntry.component';
 /* import { AuthGuardService, CanDeactivateGaurd } from './shared/services' */
 
 const routes: Routes = [
-  {path:'student',
+  {path:'',
 component:StudentEntryComponent},
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: '**', redirectTo: 'auth', pathMatch: 'full' },

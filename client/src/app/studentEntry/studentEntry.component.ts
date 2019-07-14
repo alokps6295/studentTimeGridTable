@@ -77,13 +77,17 @@ export class StudentEntryComponent implements OnInit{
     }, 
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        filter:false
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        filter:false
+        
       },
       Date: {
-        title: 'Date'
+        title: 'Date',
+        filter:false
       }
     }
   };
@@ -93,16 +97,20 @@ export class StudentEntryComponent implements OnInit{
       createButtonContent: '<i class="ion-checkmark">Create </i>',
       cancelButtonContent: '<i class="ion-close">Cancel</i>',
       confirmCreate: true,
+      create:false
 
     },
+    hideSubHeader: true,
     edit: {
       editButtonContent: '<i class="ion-edit">Edit</i>',
       saveButtonContent: '<i class="ion-checkmark">Save</i>',
       cancelButtonContent: '<i class="ion-close">Cancel</i>',
           confirmSave: true
     },
+    actions:{ delete: false },
     columns: {
-        name_time:{title:'Name'},
+        name:{title:'Name',editable:false,
+        addable: false},
         inTime: {
           title: 'In Time'
         },
@@ -122,14 +130,15 @@ export class StudentEntryComponent implements OnInit{
   event.confirm.resolve(event.newData);
   this.studentsData.push(data);
   localStorage.setItem('studentRecord',JSON.stringify(this.studentsData))
+  this.sourceTime.load(JSON.parse(JSON.stringify(this.studentsData)));
   // this.source.refresh();
   // event.confirm.resolve(undefined);
  }
  addRecordTime(event){
    console.log(event);
-   let data=event.newData;
-   event.confirm.resolve(event.newData);
-   this.searchStudent(data)
+   
+  /*  event.confirm.resolve(event.newData); */
+   this.searchStudent(event)
  }
 
  deleteRecord(event){
@@ -165,7 +174,7 @@ export class StudentEntryComponent implements OnInit{
   let oldData=event.data;
   for(let i of this.studentsData){
     console.log(i);
-    if(i.name_time==oldData.name_time){
+    if(i.name==oldData.name){
       console.log("Matched",data);
       i['inTime']=data.inTime;
       i['outTime']=data.outTime;
@@ -175,18 +184,27 @@ export class StudentEntryComponent implements OnInit{
   this.sourceTime.load(JSON.parse(JSON.stringify(this.studentsData)));
  }
 
- searchStudent(data){
+ searchStudent(event){
+  let data=event.newData;
    let studentData=JSON.parse(localStorage.getItem('studentRecord'));
+   let flag=false;
    for(let i of studentData){
      console.log(i);
-     if(i.name==data.name_time){
+     if(i.name==data.name){
        console.log("Matched",data);
+       flag=true;
        i['inTime']=data.inTime;
        i['outTime']=data.outTime;
-       i['name_time']=data.name_time;
      }
    }
-   localStorage.setItem('studentRecord',JSON.stringify(studentData))
+   if(flag){
+    event.confirm.resolve(event.newData);
+    localStorage.setItem('studentRecord',JSON.stringify(studentData))
+   }else{
+    this.sourceTime.load(JSON.parse(JSON.stringify(this.studentsData)));
+    this.notify.showToast('Error', "Student Entry not Found in above table", 'error');
+   }
+   
  }
  saveAllRecords(){
 this.studentService.saveStudent(JSON.parse(localStorage.getItem('studentRecord'))).subscribe((data)=>{
