@@ -9,9 +9,9 @@ Steps to Start:
 3.http://localhost:4200/ in browser
 
 SERVER:-
-Mongo Required
-npm i
-npm start
+1.Mongo Required
+2.npm i
+3.npm start
 (server running on 9000)
 
 LOGIC IMPLEMENTED:
