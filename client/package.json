@@ -27,7 +27,7 @@
         "bootstrap": "^4.3.1",
         "global-event-service": "^1.0.1",
         "i": "^0.3.6",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "ng2-smart-table": "^1.5.0",
         "npm": "^6.9.0",
         "rxjs": "~6.4.0",
